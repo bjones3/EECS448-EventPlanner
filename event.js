@@ -1,3 +1,7 @@
+//enter name
+//chose mode
+//load correct html
+
 window.addEventListener('DOMContentLoaded', (event) => {
     let day = "-1";
     let days = document.getElementsByClassName("day");
