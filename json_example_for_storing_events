@@ -1,8 +1,0 @@
-{
-"event": "Superbowl"
-"creater":"Michael",
-"date":"12/12/2020",
-"time available":[ ["Michael" , "Brian"], [], ["Michael"], ["Michael"], [], [], ... [] ]
-or
-"time available":[ "0:00" : ["Michael", "Brian"],  ]
-}
