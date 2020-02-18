@@ -7,10 +7,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    name: NodeJS Action Template
+    uses: bitoiu/node-js-action-template@v1.0
+    
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
+        key: [value1, ...valueN] 
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
