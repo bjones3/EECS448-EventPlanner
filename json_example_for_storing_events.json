@@ -1,13 +1,13 @@
 [{
 "event": "Superbowl",
-"creater":"Michael",
+"creator":"Michael",
 "date":"12/12/2020",
-"time available":[ ["Michael" , "Brian"], [], ["Michael"], ["Michael"], [], [], [] ]
+"time-available":[ ["Michael" , "Brian"], [], ["Michael"], ["Michael"], [], [], [] ]
 },
 {
 "event": "Superbilll",
-"creater":"Michael",
+"creator":"Michael",
 "date":"12/20/2020",
-"time available":[ ["M" , "Brian"], [], ["Michael"], ["Michael"] ]
+"time-available":[ ["M" , "Brian"], [], ["Michael"], ["Michael"] ]
 }
 ]
