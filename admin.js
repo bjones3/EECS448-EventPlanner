@@ -87,7 +87,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 element.style.backgroundColor = "lightgreen";
             }
         }
-        else if (element.className == "time")
+        else if (element.className == "time" || element.className == "time24")
         {
             let row = element.closest("tr").rowIndex;
             let column = element.cellIndex;
@@ -118,6 +118,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
         //TODO - Either add newEvent to JSON File, maybe put a function for
         //       doing so, in the event.js file, or completely write over file
         //       with jsonArray
+    });
+
+    document.getElementById("toggleTime").addEventListener("click", function(button){
+	if(document.getElementById("tblTimes").style.display === "none")
+	{
+		document.getElementById("tblTimes").style.display = "table";
+		document.getElementById("tblTimes24").style.display = "none";
+		document.getElementById("12hour").style.display = "inline";
+		document.getElementById("24hour").style.display = "none";
+	}	
+	else
+	{
+		document.getElementById("tblTimes").style.display = "none";
+		document.getElementById("tblTimes24").style.display = "table";
+		document.getElementById("12hour").style.display = "none";
+		document.getElementById("24hour").style.display = "inline";
+	}
     });
 
     function timeToStringArray(time) {
@@ -154,6 +171,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function updateTimesTable() {
         let tableTimes = document.querySelector("#tblTimes");
+	let tableTimes24 = document.querySelector("#tblTimes24");
 
         clearTimesTable();
         for (eventObject of jsonArray)
@@ -165,10 +183,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (eventObject.time[i])
                     {
                         let timeElement = tableTimes.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
+			let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
                         timeElement.style.backgroundColor = "lightblue";
                         timeElement.innerHTML = eventObject.eventName;
                         timeElement.innerHTML += "\n";
                         timeElement.innerHTML += eventObject.time[i];
+			timeElement24.style.backgroundColor = "lightblue";
+                        timeElement24.innerHTML = eventObject.eventName;
+                        timeElement24.innerHTML += "\n";
+                        timeElement24.innerHTML += eventObject.time[i];
                     }
                 }
             }
