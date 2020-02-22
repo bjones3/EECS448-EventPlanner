@@ -73,9 +73,14 @@ th, td {
     </tr>
 </table>
 
-<br>
+<br><br>
 
-<table id="tblTimes">
+<input id="toggleTime" type="button" value="Display mode"/>
+
+<br><br>
+<label id="12hour" style="display:inline">12 hour mode: </label>
+<label id="24hour" style="display:none" >24 hour mode: </label>
+<table id="tblTimes" style="display:table">
     <tr>
         <th></th>
         <th>5 AM</th>
@@ -162,6 +167,98 @@ th, td {
     </tr>
 
 </table>
+
+<table id="tblTimes24" style="display:none">
+    <tr>
+        <th></th>
+        <th>05</th>
+        <th>06</th>
+        <th>07</th>
+        <th>08</th>
+        <th>09</th>
+        <th>10</th>
+        <th>11</th>
+        <th>13</th>
+        <th>14</th>
+        <th>15</th>
+        <th>16</th>
+        <th>17</th>
+        <th>18</th>
+        <th>19</th>
+        <th>20</th>
+        <th>21</th>
+        <th>22</th>
+        <th>23</th>
+    </tr>
+    <tr>
+        <td>00:00</td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+    </tr>
+    <tr>
+        <td>00:20</td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+    </tr>
+    <tr>
+        <td>00:40</td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+        <td class="time24"></td>
+    </tr>
+
+</table>
+
+
+
+
 
 <br><br>
 <button id="btnAddEvent">Create Event</button>
