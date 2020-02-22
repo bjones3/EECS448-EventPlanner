@@ -9,7 +9,6 @@
 //       week.
 
 
-
 //TEST ARRAY OF OBJECTS
 let jsonArray = [
 {
@@ -64,10 +63,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let month = 2;
     let year = 2020;
 
-    //TODO - the creator variable's value should be obtained from another part
-    //       of our program, and not found from the admin HTML page as we should
-    //       already know it before loading this page.
-    let creator = "Bob";
+    //takes user from Index.js
+	var user = window.localStorage.getItem('user');
+	// set creator to user variable from Index.js
+    let creator = user;
     let eventName = document.querySelector("#eventName");
     document.querySelector("#creator").innerHTML += creator;
 
