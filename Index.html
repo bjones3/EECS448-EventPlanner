@@ -1,16 +1,23 @@
 <html>
 <head>
 <style>
+#button_admin	{
+		Position: fixed;
+        top: 0px;
+        left: 1130px;
+	}
+#button_sch	{
+		Position: fixed;
+        top: 0px;
+        left: 1220px;
+	}
 </style>
 </head>
 <body>
-<label>Enter event Creator's name: <input type="text"  id="creator"></label><div></div>
+<label>Enter username: <input type="text"  id="creator"></label><div></div>
 <button id ="button_name">Save name</button>
-<br></br><br></br><br></br>
-Would you like schedule or check your current schedule?
-<br></br>
 <button id ="button_admin" onclick = "window.location.href = 'admin.html';">admin page</button>
-<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">check schedule page</button>
+<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">availibility page</button>
 <script src = "Index.js"></script>
 <script src = "admin.js"></script>
 </body>
