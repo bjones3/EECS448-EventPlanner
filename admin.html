@@ -4,6 +4,17 @@
 <meta charset="utf-8"/>
 
 <style>
+#button_Index	{
+		Position: fixed;
+        top: 0px;
+        left: 1130px;
+	}
+	#button_sch	{
+		Position: fixed;
+        top: 0px;
+        left: 1230px;
+	}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -16,8 +27,8 @@ th, td {
 </head>
 <body>
 <label id="creator">Event Creator: </label>
-<button class ="button_sch" onclick = "window.location.href = 'Index.html';">Change User</button>
-<button class ="button_availibility" onclick = "window.location.href = 'availibility.html';">availibility page</button>
+<button id ="button_Index" onclick = "window.location.href = 'Index.html';">Change User</button>
+<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">availibility page</button>
 <br><br>
 <label>Event Name: <input type="text" id="eventName" value="Party"></label>
 <br><br><br>
