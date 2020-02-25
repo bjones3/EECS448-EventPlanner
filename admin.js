@@ -75,20 +75,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	yearSelection.appendChild(child);
     }
 
-if(document.getElementById("tblTimes").style.display === "none")
-	{
-		document.getElementById("tblTimes").style.display = "table";
-		document.getElementById("tblTimes24").style.display = "none";
-		document.getElementById("12hour").style.display = "inline";
-		document.getElementById("24hour").style.display = "none";
-	}	
-	else
-	{
-		document.getElementById("tblTimes").style.display = "none";
-		document.getElementById("tblTimes24").style.display = "table";
-		document.getElementById("12hour").style.display = "none";
-		document.getElementById("24hour").style.display = "inline";
-	}
 
 
     document.getElementById("month").onchange = function(){
@@ -158,11 +144,11 @@ if(document.getElementById("tblTimes").style.display === "none")
 	}
 
     //takes user from Index.js
-	var user = window.localStorage.getItem('user');
+	//var user = window.localStorage.getItem('user');
 	// set creator to user variable from Index.js
-    let creator = user;
-    let eventName = document.querySelector("#eventName");
-    document.querySelector("#creator").innerHTML += creator;
+   // let creator = user;
+   // let eventName = document.querySelector("#eventName");
+   // document.querySelector("#creator").innerHTML += creator;
 
     //TODO - Read in json file. Convert JSON to array of objects -> jsonArray variable
     
@@ -261,6 +247,11 @@ if(document.getElementById("tblTimes").style.display === "none")
         {
             time.innerHTML = "";
             time.style.backgroundColor = "";
+        }
+	for (let time24 of document.getElementsByClassName("time24"))
+        {
+            time24.innerHTML = "";
+            time24.style.backgroundColor = "";
         }
     }
 
