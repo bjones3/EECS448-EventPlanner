@@ -1,8 +1,9 @@
-function createEvent(creator, eventName, time, day, month, year) {
+function createEvent(creator, eventName, time, time24, day, month, year) {
 
     event = { creator:   creator,
               eventName: eventName,
               time:      time,
+	      time24:    time24,
               day:       day,
               month:     month,
               year:      year
