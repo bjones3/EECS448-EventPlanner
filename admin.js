@@ -75,10 +75,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         yearSelection.appendChild(child);
     }
 
+
     let jsonArray = [];
     if (window.localStorage.event)
         jsonArray = JSON.parse(window.localStorage.getItem('event'));
-
+  
     document.getElementById("month").onchange = function(){
 	let month = document.getElementById("month");
 	document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
@@ -191,11 +192,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     };
     document.getElementById("btnAddEvent").addEventListener("click", function() {
         newEvent = createEvent(creator, eventName.value, time, day, month, year);
+
+ 
+
         jsonArray.push(newEvent);
         window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
+
 
         //TODO - Either add newEvent to JSON File, maybe put a function for
         //       doing so, in the event.js file, or completely write over file
