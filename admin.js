@@ -66,13 +66,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let yearSelection = document.getElementById("year");
     let choices = [2020];
-    for(let i = 0; i < 201; i++){
-	choices = choices.concat(choices[i]+1);
-	let cho = choices[i];
-	let child = document.createElement("option");
-	child.textContent = cho;
-	child.value = cho;
-	yearSelection.appendChild(child);
+    for (let i = 0; i < 201; i++) {
+        choices = choices.concat(choices[i]+1);
+        let cho = choices[i];
+        let child = document.createElement("option");
+        child.textContent = cho;
+        child.value = cho;
+        yearSelection.appendChild(child);
     }
 
 

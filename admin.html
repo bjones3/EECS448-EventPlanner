@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
-
+	<meta charset="utf-8"/>
+	<title id = "title">Event Planner</title>
+	<link rel="stylesheet" href="admin.css">
 <style>
-#button_Index	{
+	#button_Index {
 		Position: fixed;
         top: 0px;
-        left: 1130px;
+        right: 210px;
 	}
 	#button_sch	{
 		Position: fixed;
         top: 0px;
-        left: 1230px;
+        right: 50px;
 	}
 
 table, th, td {
@@ -26,15 +27,16 @@ th, td {
 
 </head>
 <body>
+<h1>Event Planner</h1>
 <label id="creator">Event Creator: </label>
 <button id ="button_Index" onclick = "window.location.href = 'Index.html';">Change User</button>
-<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">availibility page</button>
+<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">Add Availibility</button>
 <br><br>
 <label>Event Name: <input type="text" id="eventName" value="Party"></label>
 <br><br><br>
 
 <label>Select a date and time:</label>
-<br><br>
+<br>
 
 <form>
 Select month:
