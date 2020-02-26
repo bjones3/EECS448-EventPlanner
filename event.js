@@ -1,3 +1,10 @@
+
+/**
+ * @file event.js
+ * @allows event creation
+ * @param {object}  - creator, eventName, time, time24, day, month, year
+ * @return returns the event
+ */
 function createEvent(creator, eventName, time, time24, day, month, year) {
 
     event = { creator:   creator,
