@@ -57,6 +57,10 @@
 }
 ]*/
 
+/**
+ * When the dom is loaded into admin.js, our program runs
+ * @constructor window event listner
+ */
 window.addEventListener('DOMContentLoaded', (event) => {
     let time = [];
     let day = 20;
@@ -291,7 +295,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
     };
-
+/**
+ * Represents a book.
+ * @constructor displayEventData
+ * @result - admin.html inner html will display the current event.
+ */
     function displayEventData() {
         document.getElementById("display").innerHTML = "User " + creator +
         " has created the event " + eventName.value + " on " + month + "/" +
