@@ -252,7 +252,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     };
         document.getElementById("btnAddAvailibility").addEventListener("click", function() {
+
+        for (let i in jsonArray)
+        {
+            if (jsonArray[i].day == day && jsonArray[i].month == currentMonth && jsonArray[i].year == currentYear)
+            {
+                let j = 0;
+                for (j in time)
+                {
+                    if (jsonArray[i].time[j] != undefined)
+                        jsonArray[i].time[j].push(time[j]);
+                }
+            }
+        };
+        window.localStorage.setItem('event', JSON.stringify(jsonArray));
+        updateTimesTable();
         displayAvailibilityData();
+        time = [];
     })
 
     document.getElementById("btnAddEvent").addEventListener("click", function() {
