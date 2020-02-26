@@ -393,7 +393,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             {
                 for  (i in eventObject.time)
                 {
-                    if (eventObject.time[i] || eventObject.time24[i])
+                    if (eventObject.time[i])
                     {
                         let timeElement = tableTimes.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
                         timeElement.style.backgroundColor = "lightblue";
