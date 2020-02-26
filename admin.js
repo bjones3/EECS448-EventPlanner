@@ -1,86 +1,13 @@
-//enter name
-//chose mode
-//load correct html
 
-//TODO - The monthly calendar needs to be updated to include buttons and/or
-//       dropdown lists to select month and year.
-//TODO - The monthly calendar needs to be updated so that days are valid for
-//       each particular month, and so days properly align with the days of the
-//       week.
+/**
+ * @file admin.js
+ * @contributers Adam, Michael, Garette, Jinwoo, Useff
+ */
 
-
-//TEST ARRAY OF OBJECTS
-/*let jsonArray = [
-{
-    "creator": "Michael",
-    "eventName": "Superbowl",
-    "time":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"],
-    ],
-    "time24":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"],
-    ],
-    "day": 20,
-    "currentMonth": 2,
-    "currentYear": 2020
-},
-{
-    "creator": "Brian",
-    "eventName": "Meeting",
-    "time":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Brian"], ["Brian", "Michael"], ["Brian", "Michael"], ["Brian", "Michael"], ["Brian"], ["Brian"]
-    ],
-    "time24":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Brian"], ["Brian", "Michael"], ["Brian", "Michael"], ["Brian", "Michael"], ["Brian"], ["Brian"]
-    ],
-    "day": 20,
-    "currentMonth": 2,
-    "currentYear": 2020
-},
-{
-    "creator": "Michael",
-    "eventName": "Party",
-    "time":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"],
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"]
-    ],
-     "time24":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"],
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"]
-    ],
-    "day": 20,
-    "currentMonth": 2,
-    "currentYear": 2020
-}
-]*/
-
-
+/**
+ * When the dom is loaded into admin.js, our program runs
+ * @constructor window event listner
+ */
 window.addEventListener('DOMContentLoaded', (event) => {
     let time = []; 
     let time24 = [];
@@ -104,7 +31,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let jsonArray = [];
     if (window.localStorage.event)
         jsonArray = JSON.parse(window.localStorage.getItem('event'));
-  
+ /**
+ * @constructor document.getElementById("month") will be verified onchange
+ */ 	
     document.getElementById("month").onchange = function(){
 	
 	let month = document.getElementById("month");
@@ -236,6 +165,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		clearTimesTable();
 	   }
 	}
+ /**
+ * @constructor document.getElementById("year") will be verified onchange
+ */ 	
     document.getElementById("year").onchange = function(){
 	let year = document.getElementById("year");
 
@@ -283,18 +215,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	
 	}
 
-    //takes user from Index.js
-	//var user = window.localStorage.getItem('user');
-	// set creator to user variable from Index.js
+ /**
+ * @param {string} local storage retrives "user" from localStorage 
+ */ 	
     let creator = window.localStorage.getItem('user');
     let eventName = document.querySelector("#eventName");
-    document.querySelector("#creator").innerHTML += creator;
 
-    
-
-    //TODO - Read in json file. Convert JSON to array of objects -> jsonArray variable
-
-    //EVENT LISTENERS
+    document.querySelector("#creator").innerHTML += creator;    
+ /**
+ * Event listeners
+ */ 
     window.onclick = e => {
         let element = e.target;
         if (element.className == "day")
@@ -331,25 +261,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
     };
+/**
+ * Represents a book.
+ * @constructor displayEventData
+ * @result - admin.html inner html will display the current event.
+ */	
     document.getElementById("btnAddEvent").addEventListener("click", function() {
+
         newEvent = createEvent(creator, eventName.value, time, time24, day, currentMonth, currentYear);
-
- 
-
+      
         jsonArray.push(newEvent);
         window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
-	time24 = [];
 
-
-        //TODO - Either add newEvent to JSON File, maybe put a function for
-        //       doing so, in the event.js file, or completely write over file
-        //       with jsonArray
+	      time24 = [];
     });
 
-    //Toggles between 12 hour and 24 hour mode
+ 	/**  toggles between 12 hour and 24 hour mode
+ 	*
+ 	*/ 
     document.getElementById("toggleTime").addEventListener("click", function(button){
 	if(document.getElementById("tblTimes").style.display === "none")
 	{
@@ -368,7 +300,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 
 
-    function timeToStringArray(times) {
+	/**  Time to string helper function
+ 	*
+ 	*/ 
+    function timeToStringArray(time) {
+
         let strArray = [];
 
         for (i in times)
@@ -392,6 +328,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return (strArray);
     }
 
+	/**  
+ 	* @ result The time table is "cleared" if a button (24 hour mode or 12 hour mode) is selected
+ 	*/ 	
     function clearTimesTable() {
         for (let time of document.getElementsByClassName("time"))
         {
@@ -404,7 +343,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             time24.style.backgroundColor = "";
         }
     }
-
+/**
+ * Updating time table
+ * @result - admin.html inner html will display the correct time table
+ */
     function updateTimesTable() {
         let tableTimes = document.querySelector("#tblTimes");
 	let tableTimes24 = document.querySelector("#tblTimes24");
@@ -448,7 +390,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
-    }
+
+    };
+/**
+ * Represents event data 
+ * @result - admin.html inner html will display the current event.
+ */
 
     function displayEventData() {
         document.getElementById("display").innerHTML = "User " + creator +
