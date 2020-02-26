@@ -307,9 +307,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         let strArray = [];
 
-        for (i in times)
+        for (i in time)
         {
-            if (times[i])
+            if (time[i])
             {
                 let row = i % 3;
                 let column = Math.floor(i / 3);
