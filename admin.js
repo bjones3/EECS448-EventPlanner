@@ -1,17 +1,8 @@
-
-/**
- * @file admin.js
- * @contributers Adam, Michael, Garette, Jinwoo, Useff
- */
-
-/**
- * When the dom is loaded into admin.js, our program runs
- * @constructor window event listner
- */
 window.addEventListener('DOMContentLoaded', (event) => {
-    let time = []; 
+    let time = [];
     let time24 = [];
     let day = 1;
+    let mode = 0;
     let possibleMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let currentMonth = 0;
     let currentYear = null;
@@ -26,205 +17,194 @@ window.addEventListener('DOMContentLoaded', (event) => {
         child.value = cho;
         yearSelection.appendChild(child);
     }
-
+    let creator = window.localStorage.getItem('user');
+    let eventName = document.querySelector("#eventName");
+    document.querySelector("#creator").innerHTML += creator;
 
     let jsonArray = [];
     if (window.localStorage.event)
         jsonArray = JSON.parse(window.localStorage.getItem('event'));
- /**
- * @constructor document.getElementById("month") will be verified onchange
- */ 	
-    document.getElementById("month").onchange = function(){
-	
-	let month = document.getElementById("month");
-	document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
-	if((document.getElementById("pickedMonth").value === month.options[month.selectedIndex].text) && (currentYear === document.getElementById("pickedYear").value))
-	{
-		if(document.getElementById("tblTimes").style.display === "none" && document.getElementById("tblTimes24").style.display === "none")
-		{
-		document.getElementById("tblTimes").style.display = "table";
-		document.getElementById("toggleTime").style.display = "inline";
-		document.getElementById("12hour").style.display = "inline";
-		document.getElementById("btnAddEvent").style.visibility = "visible";
-		}
-	}
-	if(document.getElementById("pickedMonth").value === "March" || document.getElementById("pickedMonth").value === "May"
-           || document.getElementById("pickedMonth").value === "August" || document.getElementById("pickedMonth").value === "October")
-	   {
-		for(let i = 0; i < possibleMonths.length; i++)
-		{
-			if(document.getElementById("pickedMonth").value === possibleMonths[i])
-			{	
-			currentMonth = i + 1;
-			}	
-		}		
-		document.getElementById("tbl31").style.display = "table";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "none";
-		document.getElementById("tblDec").style.display = "none";
-		document.getElementById("tblJan").style.display = "none";
-		document.getElementById("tblJuly").style.display = "none";
-		clearTimesTable();
-	   }
-	else if(document.getElementById("pickedMonth").value === "April" || document.getElementById("pickedMonth").value === "June"
-		|| document.getElementById("pickedMonth").value === "September" || document.getElementById("pickedMonth").value === "November")
-	   {
-		for(let i = 0; i < possibleMonths.length; i++)
-		{
-			if(document.getElementById("pickedMonth").value === possibleMonths[i])
-			{	
-			currentMonth = i + 1;
-			}	
-		}
-	 	document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "table";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "none";
-		document.getElementById("tblDec").style.display = "none";
-		document.getElementById("tblJan").style.display = "none";
-		document.getElementById("tblJuly").style.display = "none";
-		clearTimesTable();
-	   }
-	else if(document.getElementById("pickedMonth").value === "January")
-	   {
-			
-	        currentMonth = 1;
-				
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "none";
-		document.getElementById("tblDec").style.display = "none";
-		document.getElementById("tblJan").style.display = "table";
-		document.getElementById("tblJuly").style.display = "none";
-		clearTimesTable();
-	   }
-	else if(document.getElementById("pickedMonth").value === "December")
-	   {
-			
-	        currentMonth = 12;
-				
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "none";
-		document.getElementById("tblDec").style.display = "table";
-		document.getElementById("tblJan").style.display = "none";
-		document.getElementById("tblJuly").style.display = "none";
-		clearTimesTable();
-	   }
-	else if(document.getElementById("pickedMonth").value === "July")
-	   {
-			
-	        currentMonth = 7;
-				
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "none";
-		document.getElementById("tblDec").style.display = "none";
-		document.getElementById("tblJan").style.display = "none";
-		document.getElementById("tblJuly").style.display = "table";
-		clearTimesTable();
-	   }
-	else if(leapYear == true)
-	   {
-		for(let i = 0; i < possibleMonths.length; i++)
-		{
-			if(document.getElementById("pickedMonth").value === possibleMonths[i])
-			{	
-			currentMonth = i + 1;
-			}	
-		}
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "table";
-		document.getElementById("tbl28").style.display = "none";
-		document.getElementById("tblDec").style.display = "none";
-		document.getElementById("tblJan").style.display = "none";
-		document.getElementById("tblJuly").style.display = "none";
-		clearTimesTable();
-	   }
-	else
-	   {
-		for(let i = 0; i < possibleMonths.length; i++)
-		{
-			if(document.getElementById("pickedMonth").value === possibleMonths[i])
-			{	
-			currentMonth = i + 1;
-			}	
-		}
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "table";
-		document.getElementById("tblDec").style.display = "none";
-		document.getElementById("tblJan").style.display = "none";
-		document.getElementById("tblJuly").style.display = "none";
-		clearTimesTable();
-	   }
-	}
- /**
- * @constructor document.getElementById("year") will be verified onchange
- */ 	
-    document.getElementById("year").onchange = function(){
-	let year = document.getElementById("year");
 
-	document.getElementById("pickedYear").value = year.options[year.selectedIndex].text;	
-	currentYear = document.getElementById("pickedYear").value;
-	if((document.getElementById("pickedMonth").value === month.options[month.selectedIndex].text) && (currentYear === document.getElementById("pickedYear").value))
-	{
+    document.getElementById("month").onchange = function() {
+        let month = document.getElementById("month");
+        document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
+        if (document.getElementById("pickedMonth").value != null && currentYear != null)
+        {
+            document.getElementById("tblTimes").style.display = "table";
+            document.getElementById("toggleTime").style.display = "inline";
+            document.getElementById("12hour").style.display = "inline";
+            document.getElementById("btnAddEvent").style.visibility = "visible";
+        }
+        if (document.getElementById("pickedMonth").value === "March" || document.getElementById("pickedMonth").value === "May"
+        || document.getElementById("pickedMonth").value === "August" || document.getElementById("pickedMonth").value === "October")
+        {
+            for (let i = 0; i < possibleMonths.length; i++)
+            {
+                if (document.getElementById("pickedMonth").value === possibleMonths[i])
+                {
+                    currentMonth = i + 1;
+                }
+            }
+            document.getElementById("tbl31").style.display = "table";
+            document.getElementById("tbl30").style.display = "none";
+            document.getElementById("tbl29").style.display = "none";
+            document.getElementById("tbl28").style.display = "none";
+            document.getElementById("tblDec").style.display = "none";
+            document.getElementById("tblJan").style.display = "none";
+            document.getElementById("tblJuly").style.display = "none";
+            clearTimesTable();
+        }
+        else if (document.getElementById("pickedMonth").value === "April" || document.getElementById("pickedMonth").value === "June"
+        || document.getElementById("pickedMonth").value === "September" || document.getElementById("pickedMonth").value === "November")
+        {
+            for (let i = 0; i < possibleMonths.length; i++)
+            {
+                if (document.getElementById("pickedMonth").value === possibleMonths[i])
+                {
+                    currentMonth = i + 1;
+                }
+            }
+            document.getElementById("tbl31").style.display = "none";
+            document.getElementById("tbl30").style.display = "table";
+            document.getElementById("tbl29").style.display = "none";
+            document.getElementById("tbl28").style.display = "none";
+            document.getElementById("tblDec").style.display = "none";
+            document.getElementById("tblJan").style.display = "none";
+            document.getElementById("tblJuly").style.display = "none";
+            clearTimesTable();
+        }
+        else if (document.getElementById("pickedMonth").value === "January")
+        {
+            currentMonth = 1;
 
-		if(document.getElementById("tblTimes").style.display === "none" && document.getElementById("tblTimes24").style.display === "none")
-		{
-		document.getElementById("tblTimes").style.display = "table";
-		document.getElementById("toggleTime").style.display = "inline";
-		document.getElementById("12hour").style.display = "inline";
-		document.getElementById("btnAddEvent").style.visibility = "visible";
-		}
-	}	
-	//is leap year
-	if((((document.getElementById("pickedYear").value % 4) == 0) && ((document.getElementById("pickedYear").value % 100) != 0))
-	     || ((document.getElementById("pickedYear").value % 400) == 0))
-	  {
-	    leapYear = true;
-	    clearTimesTable();
-	    if(document.getElementById("pickedMonth").value === "February")
-	    {
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "table";
-		document.getElementById("tbl28").style.display = "none";
-		
-	    }
-	  }
-	//not leap year
-	else
-	  {
-	    leapYear = false;
-	    clearTimesTable();
-	    if(document.getElementById("pickedMonth").value === "February")
-	    {
-		document.getElementById("tbl31").style.display = "none";
-		document.getElementById("tbl30").style.display = "none";
-		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "table";
-	    }
-	  }
-	
+            document.getElementById("tbl31").style.display = "none";
+            document.getElementById("tbl30").style.display = "none";
+            document.getElementById("tbl29").style.display = "none";
+            document.getElementById("tbl28").style.display = "none";
+            document.getElementById("tblDec").style.display = "none";
+            document.getElementById("tblJan").style.display = "table";
+            document.getElementById("tblJuly").style.display = "none";
+            clearTimesTable();
+        }
+        else if (document.getElementById("pickedMonth").value === "December")
+        {
+            currentMonth = 12;
+
+            document.getElementById("tbl31").style.display = "none";
+            document.getElementById("tbl30").style.display = "none";
+            document.getElementById("tbl29").style.display = "none";
+            document.getElementById("tbl28").style.display = "none";
+            document.getElementById("tblDec").style.display = "table";
+            document.getElementById("tblJan").style.display = "none";
+            document.getElementById("tblJuly").style.display = "none";
+            clearTimesTable();
+        }
+        else if (document.getElementById("pickedMonth").value === "July")
+        {
+            currentMonth = 1;
+
+            document.getElementById("tbl31").style.display = "none";
+            document.getElementById("tbl30").style.display = "none";
+            document.getElementById("tbl29").style.display = "none";
+            document.getElementById("tbl28").style.display = "none";
+            document.getElementById("tblDec").style.display = "none";
+            document.getElementById("tblJan").style.display = "none";
+            document.getElementById("tblJuly").style.display = "table";
+            clearTimesTable();
+        }
+        else if (leapYear == true)
+        {
+            for (let i = 0; i < possibleMonths.length; i++)
+            {
+                if (document.getElementById("pickedMonth").value === possibleMonths[i])
+                {
+                    currentMonth = i + 1;
+                }
+            }
+            document.getElementById("tbl31").style.display = "none";
+            document.getElementById("tbl30").style.display = "none";
+            document.getElementById("tbl29").style.display = "table";
+            document.getElementById("tbl28").style.display = "none";
+            document.getElementById("tblDec").style.display = "none";
+            document.getElementById("tblJan").style.display = "none";
+            document.getElementById("tblJuly").style.display = "none";
+            clearTimesTable();
+        }
+        else
+        {
+            for (let i = 0; i < possibleMonths.length; i++)
+            {
+                if (document.getElementById("pickedMonth").value === possibleMonths[i])
+                {
+                    currentMonth = i + 1;
+                }
+            }
+            document.getElementById("tbl31").style.display = "none";
+            document.getElementById("tbl30").style.display = "none";
+            document.getElementById("tbl29").style.display = "none";
+            document.getElementById("tbl28").style.display = "table";
+            document.getElementById("tblDec").style.display = "none";
+            document.getElementById("tblJan").style.display = "none";
+            document.getElementById("tblJuly").style.display = "none";
+            clearTimesTable();
+        }
+    }
+
+    document.getElementById("year").onchange = function() {
+        let year = document.getElementById("year");
+
+        document.getElementById("pickedYear").value = year.options[year.selectedIndex].text;
+        currentYear = document.getElementById("pickedYear").value;
+        if (document.getElementById("pickedMonth").value != null && currentYear != null)
+        {
+            document.getElementById("tblTimes").style.display = "table";
+            document.getElementById("toggleTime").style.display = "inline";
+            document.getElementById("12hour").style.display = "inline";
+            document.getElementById("btnAddEvent").style.visibility = "visible";
+        }
+
+	//set mode;
+	document.getElementById("button_sch").addEventListener("click", function() {
+			mode = 1;
+			document.getElementById("btnAddEvent").style.visibility = "hidden";
+			document.getElementById("btnAddAvailibility").style.visibility = "visible";
+	})
+		document.getElementById("button_admin").addEventListener("click", function() {
+			mode = 0;
+			document.getElementById("btnAddEvent").style.visibility = "visible";
+			document.getElementById("btnAddAvailibility").style.visibility = "hidden";
+	})
+
+        //is leap year
+        if ((((document.getElementById("pickedYear").value % 4) == 0) && ((document.getElementById("pickedYear").value % 100) != 0))
+        || ((document.getElementById("pickedYear").value % 400) == 0))
+        {
+            leapYear = true;
+            clearTimesTable();
+            if (document.getElementById("pickedMonth").value === "February")
+            {
+                document.getElementById("tbl31").style.display = "none";
+                document.getElementById("tbl30").style.display = "none";
+                document.getElementById("tbl29").style.display = "table";
+                document.getElementById("tbl28").style.display = "none";
+            }
+        }
+        //not leap year
+        else
+        {
+            leapYear = false;
+            clearTimesTable();
+            if (document.getElementById("pickedMonth").value === "February")
+            {
+                document.getElementById("tbl31").style.display = "none";
+                document.getElementById("tbl30").style.display = "none";
+                document.getElementById("tbl29").style.display = "none";
+                document.getElementById("tbl28").style.display = "table";
+            }
+        }
 	}
 
- /**
- * @param {string} local storage retrives "user" from localStorage 
- */ 	
-    let creator = window.localStorage.getItem('user');
-    let eventName = document.querySelector("#eventName");
-
-    document.querySelector("#creator").innerHTML += creator;    
- /**
- * Event listeners
- */ 
+    //EVENT LISTENERS
     window.onclick = e => {
         let element = e.target;
         if (element.className == "day")
@@ -244,44 +224,50 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let column = element.cellIndex;
             let timeIndex = column * 3 + row - 4;
 
-            if (time[timeIndex] || time24[timeIndex])
+            if (time[timeIndex] || time[timeIndex])
             {
                 time[timeIndex] = undefined;
-		time24[timeIndex] = undefined;
-		element.style.backgroundColor = "";
-            }
+                time24[timeIndex] = undefined;
+              		// sets time cell to original color
+		if(mode == 0)
+                	element.style.backgroundColor = "";
+            	else if(mode == 1)
+			element.style.backgroundColor = "lightblue";
+	    }
             else
             {
-                if (element.style.backgroundColor != "lightblue")
-                {
-                    time[timeIndex] = [creator];
-		    time24[timeIndex] = [creator];
-                    element.style.backgroundColor = "lightgreen";
-                }
+			//sets time cell as the selected slot
+             	   if (element.style.backgroundColor != "lightblue" && mode == 0)
+             	   {
+             	       time[timeIndex] = [creator];
+            	        time24[timeIndex] = [creator];
+            	        element.style.backgroundColor = "lightgreen";
+          	      }else if (element.style.backgroundColor = "lightblue" && mode == 1 && element.style.backgroundColor != "")
+           	     {
+          	        time[timeIndex] = [creator];
+            	        time24[timeIndex] = [creator];
+         	        element.style.backgroundColor = "lightgreen";
+          	     }
             }
         }
     };
-/**
- * Represents a book.
- * @constructor displayEventData
- * @result - admin.html inner html will display the current event.
- */	
-    document.getElementById("btnAddEvent").addEventListener("click", function() {
+        document.getElementById("btnAddAvailibility").addEventListener("click", function() {
+        displayAvailibilityData();
+    })
 
+    document.getElementById("btnAddEvent").addEventListener("click", function() {
         newEvent = createEvent(creator, eventName.value, time, time24, day, currentMonth, currentYear);
-      
+
+
+
         jsonArray.push(newEvent);
         window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
-
-	      time24 = [];
+	time24 = [];
     });
-
- 	/**  toggles between 12 hour and 24 hour mode
- 	*
- 	*/ 
+    //Toggles between 12 hour and 24 hour mode
     document.getElementById("toggleTime").addEventListener("click", function(button){
 	if(document.getElementById("tblTimes").style.display === "none")
 	{
@@ -300,16 +286,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 
 
-	/**  Time to string helper function
- 	*
- 	*/ 
-    function timeToStringArray(time) {
-
+    function timeToStringArray(times) {
         let strArray = [];
 
-        for (i in time)
+        for (i in times)
         {
-            if (time[i])
+            if (times[i])
             {
                 let row = i % 3;
                 let column = Math.floor(i / 3);
@@ -328,9 +310,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return (strArray);
     }
 
-	/**  
- 	* @ result The time table is "cleared" if a button (24 hour mode or 12 hour mode) is selected
- 	*/ 	
     function clearTimesTable() {
         for (let time of document.getElementsByClassName("time"))
         {
@@ -343,13 +322,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             time24.style.backgroundColor = "";
         }
     }
-/**
- * Updating time table
- * @result - admin.html inner html will display the correct time table
- */
+
     function updateTimesTable() {
         let tableTimes = document.querySelector("#tblTimes");
-	let tableTimes24 = document.querySelector("#tblTimes24");
+        let tableTimes24 = document.querySelector("#tblTimes24");
 
         clearTimesTable();
         for (eventObject of jsonArray)
@@ -365,41 +341,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         timeElement.innerHTML = eventObject.eventName;
                         timeElement.innerHTML += "\n";
                         timeElement.innerHTML += eventObject.time[i];
-			let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
-			timeElement24.style.backgroundColor = "lightblue";
-                        timeElement24.innerHTML = eventObject.eventName;
-			timeElement24.innerHTML += "\n";
-     			timeElement24.innerHTML += eventObject.time[i];
                     }
                 }
-		for  (i in eventObject.time24)
+                for  (i in eventObject.time24)
                 {
                     if (eventObject.time24[i])
                     {
-                        let timeElement = tableTimes.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
-                        timeElement.style.backgroundColor = "lightblue";
-                        timeElement.innerHTML = eventObject.eventName;
-			 timeElement.innerHTML += "\n";
-                        timeElement.innerHTML += eventObject.time24[i];
-			let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
-			timeElement24.style.backgroundColor = "lightblue";
+                        let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
+                        timeElement24.style.backgroundColor = "lightblue";
                         timeElement24.innerHTML = eventObject.eventName;
-     			timeElement24.innerHTML += "\n";
+                        timeElement24.innerHTML += "\n";
                         timeElement24.innerHTML += eventObject.time24[i];
                     }
                 }
             }
         }
-
-    };
-/**
- * Represents event data 
- * @result - admin.html inner html will display the current event.
- */
+    }
 
     function displayEventData() {
         document.getElementById("display").innerHTML = "User " + creator +
         " has created the event " + eventName.value + " on " + currentMonth + "/" +
+        day + "/" + currentYear + " at times " + timeToStringArray(time);
+    };
+
+    function displayAvailibilityData() {
+	document.getElementById("display").innerHTML = "User " + creator +
+        " has added their name to the event " + eventName.value + " on " + currentMonth + "/" +
         day + "/" + currentYear + " at times " + timeToStringArray(time);
     };
 });

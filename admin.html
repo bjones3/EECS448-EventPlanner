@@ -8,12 +8,17 @@
 	#button_Index {
 		Position: fixed;
         top: 0px;
-        right: 210px;
+        right: 1750px;
 	}
 	#button_sch	{
 		Position: fixed;
         top: 0px;
         right: 50px;
+	}
+	#button_admin	{
+	Position: fixed;
+        top: 0px;
+        right: 250px;
 	}
 	table, th, td {
 	    border: 1px solid black;
@@ -28,7 +33,8 @@
 <h1>Event Planner</h1>
 <label id="creator">Event Creator: </label>
 <button id ="button_Index" onclick = "window.location.href = 'Index.html';">Change User</button>
-<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">Add Availibility</button>
+<button id ="button_sch">Availibility mode</button>
+<button id ="button_admin">Admin mode</button>
 <br><br>
 <label>Event Name: <input type="text" id="eventName" value="Party"></label>
 <br><br><br>
@@ -543,6 +549,7 @@ Select year:
 
 <br><br>
 <button id="btnAddEvent" style="visibility:hidden">Create Event</button>
+<button id="btnAddAvailibility" style="visibility:hidden">Add Availibility</button>
 <br><br>
 <label id="display"></label>
 
