@@ -10,7 +10,7 @@
 
 
 //TEST ARRAY OF OBJECTS
-let jsonArray = [
+/*let jsonArray = [
 {
     "creator": "Michael",
     "eventName": "Superbowl",
@@ -55,7 +55,7 @@ let jsonArray = [
     "month": 2,
     "year": 2020
 }
-]
+]*/
 
 window.addEventListener('DOMContentLoaded', (event) => {
     let time = [];
@@ -66,17 +66,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let yearSelection = document.getElementById("year");
     let choices = [2020];
-    for(let i = 0; i < 201; i++){
-	choices = choices.concat(choices[i]+1);
-	let cho = choices[i];
-	let child = document.createElement("option");
-	child.textContent = cho;
-	child.value = cho;
-	yearSelection.appendChild(child);
+    for (let i = 0; i < 201; i++) {
+        choices = choices.concat(choices[i]+1);
+        let cho = choices[i];
+        let child = document.createElement("option");
+        child.textContent = cho;
+        child.value = cho;
+        yearSelection.appendChild(child);
     }
 
-  
 
+    let jsonArray = [];
+    if (window.localStorage.event)
+        jsonArray = JSON.parse(window.localStorage.getItem('event'));
+  
     document.getElementById("month").onchange = function(){
 	let month = document.getElementById("month");
 	document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
@@ -193,6 +196,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
  
 
         jsonArray.push(newEvent);
+        window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
