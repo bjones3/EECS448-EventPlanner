@@ -181,20 +181,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             {
                 if (element.style.backgroundColor != "lightblue")
                 {
-                	var SaveNameButton = document.getElementById('button_name');
-
-	/*let inputUser = document.getElementById('creator');
-
-	inputUser.addEventListener("input", function() {
-		console.log(inputUser.value);
-		window.localStorage.setItem('user', inputUser.value);
-	});*/
-	SaveNameButton.addEventListener("click", function() {
-		var creat = document.getElementById('creator');
-			window.localStorage.setItem('user', creat.value);
-
-
-	});    time[timeIndex] = [creator];
+                    time[timeIndex] = [creator];
                     element.style.backgroundColor = "lightgreen";
                 }
             }
