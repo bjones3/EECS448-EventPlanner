@@ -1,0 +1,23 @@
+# EECS448-EventPlanner
+
+Brian and I imagined storing the time as part of an array with 72 time slots. I think there are about 72 time slots in a day if every 20 minutes counts as one. Which means index one represents time 00:00 or the first time available. Index 2 = 00:20. Index 3 = 00:40. etc.. Now I want to make a party event at 12/12/2020 starting at time 00:20 and ending 01:20, so an hour. Which is time slot 2 and 3 [[1][2][3]. 
+In the array of the time slot it would be timeavailable = [[],["Michael],["Michael"],["Michael"]]. Now John wants to add his time's he can goto so all functionality stays the same. John wants to go from 00:20-00:40. So Johns name would be added to the 2nd index of the array and at the 2nd value after Michael in the 2nd index = [[],["Michael", "John"]]. If the creator of the event is alawys the first name then we can be sure that every name we add after the creator, is never going to create their own event. So creators are always first and people who are attending are always after that. If there is no creator then you can't add your time accidentally.
+timeavailable now would be = [[],["Michael","John"],["Michael"],["Michael"]]
+I read this as the event that Michael created is from index 2-4 which is 00:20-1:20[[1][2][3][4]]
+John is attending the event Michael created at time 00:20 which means he is attending for 20 minutes. We know John is attending Michael's event because we only need to push names at the end of the indices time-slot.
+So basically all functionality means that we push all of the things we want to change to the back of our json object arrays
+
+The json object would be like an ordered set of events.
+[{"event one name":
+  "who created it:
+  "date:
+  "etc
+ },//end of event one
+ //start of event 2
+ {
+  "event 2 name: 
+  "date":
+  "
+ }
+]//end of json array object so we know we have read all of the events and every event we add we push to the back of the json. 
+Everytime we edit a name, or create an event. Just push the correct things at the correct json key. And save over the original json object. It will be stored and work in both html files if we use localstorage function. Brian and I talked about this functionality and I hope you guys think it will work ok. I think it can be easier if all the information was read and pushed at the same time. If we push a name when the program is opened and we go back and push another name it will overrite the other names and events but if we push the name only when we have the date, time, name's, then wouldn't it be easier?
