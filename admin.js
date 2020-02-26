@@ -1,3 +1,4 @@
+
 /**
  * @file admin.js
  * @contributers Adam, Michael, Garette, Jinwoo, Useff
@@ -8,17 +9,18 @@
  * @constructor window event listner
  */
 window.addEventListener('DOMContentLoaded', (event) => {
-    let time = [];
-    let day = 20;
-    let month = 2;
-    let year = 2020;
+    let time = []; 
+    let time24 = [];
+    let day = 1;
+    let possibleMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let currentMonth = 0;
+    let currentYear = null;
     let leapYear = false;
-
     let yearSelection = document.getElementById("year");
-    let choices = [2020];
+    let yearChoices = [2020];
     for (let i = 0; i < 201; i++) {
-        choices = choices.concat(choices[i]+1);
-        let cho = choices[i];
+        yearChoices = yearChoices.concat(yearChoices[i]+1);
+        let cho = yearChoices[i];
         let child = document.createElement("option");
         child.textContent = cho;
         child.value = cho;
@@ -33,39 +35,134 @@ window.addEventListener('DOMContentLoaded', (event) => {
  * @constructor document.getElementById("month") will be verified onchange
  */ 	
     document.getElementById("month").onchange = function(){
+	
 	let month = document.getElementById("month");
 	document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
-	if(document.getElementById("pickedMonth").value === "January" || document.getElementById("pickedMonth").value === "March"
-	   || document.getElementById("pickedMonth").value === "May" || document.getElementById("pickedMonth").value === "July"
-           || document.getElementById("pickedMonth").value === "August" || document.getElementById("pickedMonth").value === "October"
-           || document.getElementById("pickedMonth").value === "December")
+	if((document.getElementById("pickedMonth").value === month.options[month.selectedIndex].text) && (currentYear === document.getElementById("pickedYear").value))
+	{
+		if(document.getElementById("tblTimes").style.display === "none" && document.getElementById("tblTimes24").style.display === "none")
+		{
+		document.getElementById("tblTimes").style.display = "table";
+		document.getElementById("toggleTime").style.display = "inline";
+		document.getElementById("12hour").style.display = "inline";
+		document.getElementById("btnAddEvent").style.visibility = "visible";
+		}
+	}
+	if(document.getElementById("pickedMonth").value === "March" || document.getElementById("pickedMonth").value === "May"
+           || document.getElementById("pickedMonth").value === "August" || document.getElementById("pickedMonth").value === "October")
 	   {
+		for(let i = 0; i < possibleMonths.length; i++)
+		{
+			if(document.getElementById("pickedMonth").value === possibleMonths[i])
+			{	
+			currentMonth = i + 1;
+			}	
+		}		
 		document.getElementById("tbl31").style.display = "table";
 		document.getElementById("tbl30").style.display = "none";
 		document.getElementById("tbl29").style.display = "none";
 		document.getElementById("tbl28").style.display = "none";
+		document.getElementById("tblDec").style.display = "none";
+		document.getElementById("tblJan").style.display = "none";
+		document.getElementById("tblJuly").style.display = "none";
+		clearTimesTable();
 	   }
 	else if(document.getElementById("pickedMonth").value === "April" || document.getElementById("pickedMonth").value === "June"
 		|| document.getElementById("pickedMonth").value === "September" || document.getElementById("pickedMonth").value === "November")
 	   {
+		for(let i = 0; i < possibleMonths.length; i++)
+		{
+			if(document.getElementById("pickedMonth").value === possibleMonths[i])
+			{	
+			currentMonth = i + 1;
+			}	
+		}
 	 	document.getElementById("tbl31").style.display = "none";
 		document.getElementById("tbl30").style.display = "table";
 		document.getElementById("tbl29").style.display = "none";
 		document.getElementById("tbl28").style.display = "none";
+		document.getElementById("tblDec").style.display = "none";
+		document.getElementById("tblJan").style.display = "none";
+		document.getElementById("tblJuly").style.display = "none";
+		clearTimesTable();
+	   }
+	else if(document.getElementById("pickedMonth").value === "January")
+	   {
+			
+	        currentMonth = 1;
+				
+		document.getElementById("tbl31").style.display = "none";
+		document.getElementById("tbl30").style.display = "none";
+		document.getElementById("tbl29").style.display = "none";
+		document.getElementById("tbl28").style.display = "none";
+		document.getElementById("tblDec").style.display = "none";
+		document.getElementById("tblJan").style.display = "table";
+		document.getElementById("tblJuly").style.display = "none";
+		clearTimesTable();
+	   }
+	else if(document.getElementById("pickedMonth").value === "December")
+	   {
+			
+	        currentMonth = 12;
+				
+		document.getElementById("tbl31").style.display = "none";
+		document.getElementById("tbl30").style.display = "none";
+		document.getElementById("tbl29").style.display = "none";
+		document.getElementById("tbl28").style.display = "none";
+		document.getElementById("tblDec").style.display = "table";
+		document.getElementById("tblJan").style.display = "none";
+		document.getElementById("tblJuly").style.display = "none";
+		clearTimesTable();
+	   }
+	else if(document.getElementById("pickedMonth").value === "July")
+	   {
+			
+	        currentMonth = 7;
+				
+		document.getElementById("tbl31").style.display = "none";
+		document.getElementById("tbl30").style.display = "none";
+		document.getElementById("tbl29").style.display = "none";
+		document.getElementById("tbl28").style.display = "none";
+		document.getElementById("tblDec").style.display = "none";
+		document.getElementById("tblJan").style.display = "none";
+		document.getElementById("tblJuly").style.display = "table";
+		clearTimesTable();
 	   }
 	else if(leapYear == true)
 	   {
+		for(let i = 0; i < possibleMonths.length; i++)
+		{
+			if(document.getElementById("pickedMonth").value === possibleMonths[i])
+			{	
+			currentMonth = i + 1;
+			}	
+		}
 		document.getElementById("tbl31").style.display = "none";
 		document.getElementById("tbl30").style.display = "none";
 		document.getElementById("tbl29").style.display = "table";
 		document.getElementById("tbl28").style.display = "none";
+		document.getElementById("tblDec").style.display = "none";
+		document.getElementById("tblJan").style.display = "none";
+		document.getElementById("tblJuly").style.display = "none";
+		clearTimesTable();
 	   }
 	else
 	   {
+		for(let i = 0; i < possibleMonths.length; i++)
+		{
+			if(document.getElementById("pickedMonth").value === possibleMonths[i])
+			{	
+			currentMonth = i + 1;
+			}	
+		}
 		document.getElementById("tbl31").style.display = "none";
 		document.getElementById("tbl30").style.display = "none";
 		document.getElementById("tbl29").style.display = "none";
 		document.getElementById("tbl28").style.display = "table";
+		document.getElementById("tblDec").style.display = "none";
+		document.getElementById("tblJan").style.display = "none";
+		document.getElementById("tblJuly").style.display = "none";
+		clearTimesTable();
 	   }
 	}
  /**
@@ -73,24 +170,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
  */ 	
     document.getElementById("year").onchange = function(){
 	let year = document.getElementById("year");
-	document.getElementById("pickedYear").value = year.options[year.selectedIndex].text;
+
+	document.getElementById("pickedYear").value = year.options[year.selectedIndex].text;	
+	currentYear = document.getElementById("pickedYear").value;
+	if((document.getElementById("pickedMonth").value === month.options[month.selectedIndex].text) && (currentYear === document.getElementById("pickedYear").value))
+	{
+
+		if(document.getElementById("tblTimes").style.display === "none" && document.getElementById("tblTimes24").style.display === "none")
+		{
+		document.getElementById("tblTimes").style.display = "table";
+		document.getElementById("toggleTime").style.display = "inline";
+		document.getElementById("12hour").style.display = "inline";
+		document.getElementById("btnAddEvent").style.visibility = "visible";
+		}
+	}	
 	//is leap year
 	if((((document.getElementById("pickedYear").value % 4) == 0) && ((document.getElementById("pickedYear").value % 100) != 0))
 	     || ((document.getElementById("pickedYear").value % 400) == 0))
 	  {
 	    leapYear = true;
+	    clearTimesTable();
 	    if(document.getElementById("pickedMonth").value === "February")
 	    {
 		document.getElementById("tbl31").style.display = "none";
 		document.getElementById("tbl30").style.display = "none";
 		document.getElementById("tbl29").style.display = "table";
 		document.getElementById("tbl28").style.display = "none";
+		
 	    }
 	  }
 	//not leap year
 	else
 	  {
 	    leapYear = false;
+	    clearTimesTable();
 	    if(document.getElementById("pickedMonth").value === "February")
 	    {
 		document.getElementById("tbl31").style.display = "none";
@@ -99,6 +212,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("tbl28").style.display = "table";
 	    }
 	  }
+	
 	}
 
  /**
@@ -106,6 +220,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
  */ 	
     let creator = window.localStorage.getItem('user');
     let eventName = document.querySelector("#eventName");
+
     document.querySelector("#creator").innerHTML += creator;    
  /**
  * Event listeners
@@ -129,16 +244,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let column = element.cellIndex;
             let timeIndex = column * 3 + row - 4;
 
-            if (time[timeIndex])
+            if (time[timeIndex] || time24[timeIndex])
             {
                 time[timeIndex] = undefined;
-                element.style.backgroundColor = "";
+		time24[timeIndex] = undefined;
+		element.style.backgroundColor = "";
             }
             else
             {
                 if (element.style.backgroundColor != "lightblue")
                 {
                     time[timeIndex] = [creator];
+		    time24[timeIndex] = [creator];
                     element.style.backgroundColor = "lightgreen";
                 }
             }
@@ -150,12 +267,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
  * @result - admin.html inner html will display the current event.
  */	
     document.getElementById("btnAddEvent").addEventListener("click", function() {
-        newEvent = createEvent(creator, eventName.value, time, day, month, year);
+
+        newEvent = createEvent(creator, eventName.value, time, time24, day, currentMonth, currentYear);
+      
         jsonArray.push(newEvent);
         window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
+
+	      time24 = [];
     });
 
  	/**  toggles between 12 hour and 24 hour mode
@@ -178,15 +299,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	}
     });
 
+
 	/**  Time to string helper function
  	*
  	*/ 
     function timeToStringArray(time) {
+
         let strArray = [];
 
-        for (i in time)
+        for (i in times)
         {
-            if (time[i])
+            if (times[i])
             {
                 let row = i % 3;
                 let column = Math.floor(i / 3);
@@ -203,7 +326,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         return (strArray);
-    };
+    }
 
 	/**  
  	* @ result The time table is "cleared" if a button (24 hour mode or 12 hour mode) is selected
@@ -231,34 +354,52 @@ window.addEventListener('DOMContentLoaded', (event) => {
         clearTimesTable();
         for (eventObject of jsonArray)
         {
-            if (eventObject.day == day && eventObject.month == month && eventObject.year == year)
+            if (eventObject.day == day && eventObject.month == currentMonth && eventObject.year == currentYear)
             {
                 for  (i in eventObject.time)
                 {
                     if (eventObject.time[i])
                     {
                         let timeElement = tableTimes.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
-			let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
                         timeElement.style.backgroundColor = "lightblue";
                         timeElement.innerHTML = eventObject.eventName;
                         timeElement.innerHTML += "\n";
                         timeElement.innerHTML += eventObject.time[i];
+			let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
 			timeElement24.style.backgroundColor = "lightblue";
                         timeElement24.innerHTML = eventObject.eventName;
-                        timeElement24.innerHTML += "\n";
-                        timeElement24.innerHTML += eventObject.time[i];
+			timeElement24.innerHTML += "\n";
+     			timeElement24.innerHTML += eventObject.time[i];
+                    }
+                }
+		for  (i in eventObject.time24)
+                {
+                    if (eventObject.time24[i])
+                    {
+                        let timeElement = tableTimes.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
+                        timeElement.style.backgroundColor = "lightblue";
+                        timeElement.innerHTML = eventObject.eventName;
+			 timeElement.innerHTML += "\n";
+                        timeElement.innerHTML += eventObject.time24[i];
+			let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
+			timeElement24.style.backgroundColor = "lightblue";
+                        timeElement24.innerHTML = eventObject.eventName;
+     			timeElement24.innerHTML += "\n";
+                        timeElement24.innerHTML += eventObject.time24[i];
                     }
                 }
             }
         }
+
     };
 /**
  * Represents event data 
  * @result - admin.html inner html will display the current event.
  */
+
     function displayEventData() {
         document.getElementById("display").innerHTML = "User " + creator +
-        " has created the event " + eventName.value + " on " + month + "/" +
-        day + "/" + year + " at times " + timeToStringArray(time);
+        " has created the event " + eventName.value + " on " + currentMonth + "/" +
+        day + "/" + currentYear + " at times " + timeToStringArray(time);
     };
 });

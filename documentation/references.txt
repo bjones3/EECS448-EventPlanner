@@ -1,2 +1,5 @@
 References (5%)
 This will be its own section in the documentation. Any work/code that you or a teammate did not write from scratch, must be cited. This should also be in your GitHub repository.
+
+
+Referenced from this code to be able to toggle between tables: http://jsfiddle.net/Wfxpu/1/
