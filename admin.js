@@ -1,5 +1,6 @@
 /**
  * @file admin.js
+ * @contributers Adam, Michael, Garette, Jinwoo, Useff
  */
 
 /**
@@ -28,7 +29,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let jsonArray = [];
     if (window.localStorage.event)
         jsonArray = JSON.parse(window.localStorage.getItem('event'));
-  
+ /**
+ * @constructor document.getElementById("month") will be verified onchange
+ */ 	
     document.getElementById("month").onchange = function(){
 	let month = document.getElementById("month");
 	document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
@@ -65,6 +68,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("tbl28").style.display = "table";
 	   }
 	}
+ /**
+ * @constructor document.getElementById("year") will be verified onchange
+ */ 	
     document.getElementById("year").onchange = function(){
 	let year = document.getElementById("year");
 	document.getElementById("pickedYear").value = year.options[year.selectedIndex].text;
@@ -95,16 +101,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	  }
 	}
 
-    //takes user from Index.js
-	//var user = window.localStorage.getItem('user');
-	// set creator to user variable from Index.js
+ /**
+ * @param {string} local storage retrives "user" from localStorage 
+ */ 	
     let creator = window.localStorage.getItem('user');
     let eventName = document.querySelector("#eventName");
-    document.querySelector("#creator").innerHTML += creator;
-
-    //TODO - Read in json file. Convert JSON to array of objects -> jsonArray variable
-
-    //EVENT LISTENERS
+    document.querySelector("#creator").innerHTML += creator;    
+ /**
+ * Event listeners
+ */ 
     window.onclick = e => {
         let element = e.target;
         if (element.className == "day")
@@ -139,24 +144,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
     };
+/**
+ * Represents a book.
+ * @constructor displayEventData
+ * @result - admin.html inner html will display the current event.
+ */	
     document.getElementById("btnAddEvent").addEventListener("click", function() {
         newEvent = createEvent(creator, eventName.value, time, day, month, year);
-
- 
-
         jsonArray.push(newEvent);
         window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
-
-
-        //TODO - Either add newEvent to JSON File, maybe put a function for
-        //       doing so, in the event.js file, or completely write over file
-        //       with jsonArray
     });
 
-    //Toggles between 12 hour and 24 hour mode
+ 	/**  toggles between 12 hour and 24 hour mode
+ 	*
+ 	*/ 
     document.getElementById("toggleTime").addEventListener("click", function(button){
 	if(document.getElementById("tblTimes").style.display === "none")
 	{
@@ -174,7 +178,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	}
     });
 
-
+	/**  Time to string helper function
+ 	*
+ 	*/ 
     function timeToStringArray(time) {
         let strArray = [];
 
@@ -199,6 +205,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return (strArray);
     };
 
+	/**  
+ 	* @ result The time table is "cleared" if a button (24 hour mode or 12 hour mode) is selected
+ 	*/ 	
     function clearTimesTable() {
         for (let time of document.getElementsByClassName("time"))
         {
@@ -211,7 +220,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             time24.style.backgroundColor = "";
         }
     }
-
+/**
+ * Updating time table
+ * @result - admin.html inner html will display the correct time table
+ */
     function updateTimesTable() {
         let tableTimes = document.querySelector("#tblTimes");
 	let tableTimes24 = document.querySelector("#tblTimes24");
@@ -241,8 +253,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     };
 /**
- * Represents a book.
- * @constructor displayEventData
+ * Represents event data 
  * @result - admin.html inner html will display the current event.
  */
     function displayEventData() {
