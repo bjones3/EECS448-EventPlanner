@@ -10,7 +10,7 @@
 
 
 //TEST ARRAY OF OBJECTS
-let jsonArray = [
+/*let jsonArray = [
 {
     "creator": "Michael",
     "eventName": "Superbowl",
@@ -55,7 +55,7 @@ let jsonArray = [
     "month": 2,
     "year": 2020
 }
-]
+]*/
 
 window.addEventListener('DOMContentLoaded', (event) => {
     let time = [];
@@ -75,7 +75,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         yearSelection.appendChild(child);
     }
 
-
+    let jsonArray = [];
+    if (window.localStorage.event)
+        jsonArray = JSON.parse(window.localStorage.getItem('event'));
 
     document.getElementById("month").onchange = function(){
 	let month = document.getElementById("month");
@@ -190,6 +192,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("btnAddEvent").addEventListener("click", function() {
         newEvent = createEvent(creator, eventName.value, time, day, month, year);
         jsonArray.push(newEvent);
+        window.localStorage.setItem('event', JSON.stringify(jsonArray));
         updateTimesTable();
         displayEventData();
         time = [];
