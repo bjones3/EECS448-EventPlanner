@@ -80,9 +80,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("month").onchange = function(){
 	let month = document.getElementById("month");
 	document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
-	if(document.getElementById("pickedMonth").value === "January" || document.getElementById("pickedMonth").value === "March" 
-	   || document.getElementById("pickedMonth").value === "May" || document.getElementById("pickedMonth").value === "July" 
-           || document.getElementById("pickedMonth").value === "August" || document.getElementById("pickedMonth").value === "October" 
+	if(document.getElementById("pickedMonth").value === "January" || document.getElementById("pickedMonth").value === "March"
+	   || document.getElementById("pickedMonth").value === "May" || document.getElementById("pickedMonth").value === "July"
+           || document.getElementById("pickedMonth").value === "August" || document.getElementById("pickedMonth").value === "October"
            || document.getElementById("pickedMonth").value === "December")
 	   {
 		document.getElementById("tbl31").style.display = "table";
@@ -117,7 +117,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	let year = document.getElementById("year");
 	document.getElementById("pickedYear").value = year.options[year.selectedIndex].text;
 	//is leap year
-	if((((document.getElementById("pickedYear").value % 4) == 0) && ((document.getElementById("pickedYear").value % 100) != 0)) 
+	if((((document.getElementById("pickedYear").value % 4) == 0) && ((document.getElementById("pickedYear").value % 100) != 0))
 	     || ((document.getElementById("pickedYear").value % 400) == 0))
 	  {
 	    leapYear = true;
@@ -126,10 +126,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("tbl31").style.display = "none";
 		document.getElementById("tbl30").style.display = "none";
 		document.getElementById("tbl29").style.display = "table";
-		document.getElementById("tbl28").style.display = "none";	
+		document.getElementById("tbl28").style.display = "none";
 	    }
 	  }
-	//not leap year 
+	//not leap year
 	else
 	  {
 	    leapYear = false;
@@ -138,7 +138,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("tbl31").style.display = "none";
 		document.getElementById("tbl30").style.display = "none";
 		document.getElementById("tbl29").style.display = "none";
-		document.getElementById("tbl28").style.display = "table";	
+		document.getElementById("tbl28").style.display = "table";
 	    }
 	  }
 	}
@@ -146,12 +146,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //takes user from Index.js
 	//var user = window.localStorage.getItem('user');
 	// set creator to user variable from Index.js
-   // let creator = user;
-   // let eventName = document.querySelector("#eventName");
-   // document.querySelector("#creator").innerHTML += creator;
+    let creator = window.localStorage.getItem('user');
+    let eventName = document.querySelector("#eventName");
+    document.querySelector("#creator").innerHTML += creator;
 
     //TODO - Read in json file. Convert JSON to array of objects -> jsonArray variable
-    
+
     //EVENT LISTENERS
     window.onclick = e => {
         let element = e.target;
@@ -181,7 +181,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
             {
                 if (element.style.backgroundColor != "lightblue")
                 {
-                    time[timeIndex] = [creator];
+                	var SaveNameButton = document.getElementById('button_name');
+
+	/*let inputUser = document.getElementById('creator');
+
+	inputUser.addEventListener("input", function() {
+		console.log(inputUser.value);
+		window.localStorage.setItem('user', inputUser.value);
+	});*/
+	SaveNameButton.addEventListener("click", function() {
+		var creat = document.getElementById('creator');
+			window.localStorage.setItem('user', creat.value);
+
+
+	});    time[timeIndex] = [creator];
                     element.style.backgroundColor = "lightgreen";
                 }
             }
@@ -207,7 +220,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("tblTimes24").style.display = "none";
 		document.getElementById("12hour").style.display = "inline";
 		document.getElementById("24hour").style.display = "none";
-	}	
+	}
 	else
 	{
 		document.getElementById("tblTimes").style.display = "none";

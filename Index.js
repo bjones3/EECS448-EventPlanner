@@ -1,5 +1,8 @@
-var SaveNameButton = document.getElementById('button_name')
-SaveNameButton.addEventListener("click", function() {
-	var creat = document.getElementById('creator');
-		window.localStorage.setItem('user', creat.value);
+window.addEventListener('DOMContentLoaded', (event) => {
+	let inputUser = document.getElementById('creator');
+
+	window.localStorage.setItem('user', inputUser.value);
+	inputUser.addEventListener("input", function() {
+		window.localStorage.setItem('user', inputUser.value);
+	});
 });

@@ -4,25 +4,13 @@
     <meta charset="UTF-8">
     <title id = "title">Event Planner</title>
     <link rel="stylesheet" href="index.css">
-<style>
-#button_admin	{
-		Position: fixed;
-        top: 0px;
-        left: 1130px;
-	}
-#button_sch	{
-		Position: fixed;
-        top: 0px;
-        left: 1220px;
-	}
-</style>
 </head>
 <body>
-<label>Enter username: <input type="text"  id="creator"></label><div></div>
-<button id ="button_name">Save name</button>
-<button id ="button_admin" onclick = "window.location.href = 'admin.html';">admin page</button>
-<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">availibility page</button>
-<script src = "Index.js"></script>
-<script src = "admin.js"></script>
+    <script src = "Index.js"></script>
+
+    <h1>Event Planner</h1>
+    <label>Enter username: <input type="text"  id="creator"></label>
+    <button id ="button_admin" onclick = "window.location.href = 'admin.html';">Create Event / Check Status</button>
+    <button id ="button_sch" onclick = "window.location.href = 'availibility.html';">Add Availability</button>
 </body>
 </html>
