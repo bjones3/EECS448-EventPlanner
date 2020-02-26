@@ -84,7 +84,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     let time = []; 
     let time24 = [];
-    let day = 20;
+    let day = 1;
     let possibleMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let currentMonth = 0;
     let currentYear = null;
