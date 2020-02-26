@@ -4,6 +4,17 @@
 <meta charset="utf-8"/>
 
 <style>
+#button_Index	{
+		Position: fixed;
+        top: 0px;
+        left: 1130px;
+	}
+	#button_sch	{
+		Position: fixed;
+        top: 0px;
+        left: 1230px;
+	}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -15,11 +26,9 @@ th, td {
 
 </head>
 <body>
-
-<script src="event.js"></script>
-<script src="admin.js"></script>
-
 <label id="creator">Event Creator: </label>
+<button id ="button_Index" onclick = "window.location.href = 'Index.html';">Change User</button>
+<button id ="button_sch" onclick = "window.location.href = 'availibility.html';">availibility page</button>
 <br><br>
 <label>Event Name: <input type="text" id="eventName" value="Party"></label>
 <br><br><br>
@@ -27,16 +36,29 @@ th, td {
 <label>Select a date and time:</label>
 <br><br>
 
-<table>
-    <tr>
-        <th>M</th>
-        <th>Tu</th>
-        <th>W</th>
-        <th>Th</th>
-        <th>F</th>
-        <th>Sa</th>
-        <th>Su</th>
-    </tr>
+<form>
+Select month:
+<select id="month">
+	<option>January</option>
+	<option>February</option>
+	<option>March</option>
+	<option>April</option>
+	<option>May</option>
+	<option>June</option>
+	<option>July</option>
+	<option>August</option>
+	<option>September</option>
+	<option>October</option>
+	<option>November</option>
+	<option>December</option>
+</select>
+Select year:
+<select id="year">
+</select>
+<p>Date is: <input type="text" id="pickedMonth" size="20">, <input type="text" id="pickedYear" size="20"></p>
+</form>
+
+<table id="tbl31" style="display:table">
     <tr>
         <td class="day">1</td>
         <td class="day">2</td>
@@ -72,6 +94,135 @@ th, td {
         <td class="day">26</td>
         <td class="day">27</td>
         <td class="day">28</td>
+    </tr>
+    <tr>
+        <td class="day">29</td>
+        <td class="day">30</td>
+        <td class="day">31</td>
+    </tr>
+</table>
+
+<table id="tbl30" style="display:none">
+    <tr>
+        <td class="day">1</td>
+        <td class="day">2</td>
+        <td class="day">3</td>
+        <td class="day">4</td>
+        <td class="day">5</td>
+        <td class="day">6</td>
+        <td class="day">7</td>
+    </tr>
+    <tr>
+        <td class="day">8</td>
+        <td class="day">9</td>
+        <td class="day">10</td>
+        <td class="day">11</td>
+        <td class="day">12</td>
+        <td class="day">13</td>
+        <td class="day">14</td>
+    </tr>
+    <tr>
+        <td class="day">15</td>
+        <td class="day">16</td>
+        <td class="day">17</td>
+        <td class="day">18</td>
+        <td class="day">19</td>
+        <td class="day">20</td>
+        <td class="day">21</td>
+    </tr>
+    <tr>
+        <td class="day">22</td>
+        <td class="day">23</td>
+        <td class="day">24</td>
+        <td class="day">25</td>
+        <td class="day">26</td>
+        <td class="day">27</td>
+        <td class="day">28</td>
+    </tr>
+    <tr>
+        <td class="day">29</td>
+        <td class="day">30</td>
+    </tr>
+</table>
+
+<table id="tbl28" style="display:none">
+    <tr>
+        <td class="day">1</td>
+        <td class="day">2</td>
+        <td class="day">3</td>
+        <td class="day">4</td>
+        <td class="day">5</td>
+        <td class="day">6</td>
+        <td class="day">7</td>
+    </tr>
+    <tr>
+        <td class="day">8</td>
+        <td class="day">9</td>
+        <td class="day">10</td>
+        <td class="day">11</td>
+        <td class="day">12</td>
+        <td class="day">13</td>
+        <td class="day">14</td>
+    </tr>
+    <tr>
+        <td class="day">15</td>
+        <td class="day">16</td>
+        <td class="day">17</td>
+        <td class="day">18</td>
+        <td class="day">19</td>
+        <td class="day">20</td>
+        <td class="day">21</td>
+    </tr>
+    <tr>
+        <td class="day">22</td>
+        <td class="day">23</td>
+        <td class="day">24</td>
+        <td class="day">25</td>
+        <td class="day">26</td>
+        <td class="day">27</td>
+        <td class="day">28</td>
+    </tr>
+</table>
+
+<table id="tbl29" style="display:none">
+    <tr>
+        <td class="day">1</td>
+        <td class="day">2</td>
+        <td class="day">3</td>
+        <td class="day">4</td>
+        <td class="day">5</td>
+        <td class="day">6</td>
+        <td class="day">7</td>
+    </tr>
+    <tr>
+        <td class="day">8</td>
+        <td class="day">9</td>
+        <td class="day">10</td>
+        <td class="day">11</td>
+        <td class="day">12</td>
+        <td class="day">13</td>
+        <td class="day">14</td>
+    </tr>
+    <tr>
+        <td class="day">15</td>
+        <td class="day">16</td>
+        <td class="day">17</td>
+        <td class="day">18</td>
+        <td class="day">19</td>
+        <td class="day">20</td>
+        <td class="day">21</td>
+    </tr>
+    <tr>
+        <td class="day">22</td>
+        <td class="day">23</td>
+        <td class="day">24</td>
+        <td class="day">25</td>
+        <td class="day">26</td>
+        <td class="day">27</td>
+        <td class="day">28</td>
+    </tr>
+     <tr>
+        <td class="day">29</td>
     </tr>
 </table>
 
@@ -167,7 +318,6 @@ th, td {
         <td class="time"></td>
         <td class="time"></td>
     </tr>
-
 </table>
 
 <table id="tblTimes24" style="display:none">
@@ -268,6 +418,8 @@ th, td {
 <label id="display"></label>
 
 
-
+<!--<script src = "Index.js"></script>-->
+<script src="event.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>
