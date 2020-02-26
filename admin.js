@@ -75,30 +75,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	yearSelection.appendChild(child);
     }
 
-    function updateArray(){
-    let storage = (localStorage.EVENTS);
-    //it wont parse if this is empty
-    // program halts
-    if(storage != "undefined")
-    {
-    let w = JSON.parse(storage);
-    return w;
-    }
-    else {
-      return "null";}
-};
-function updateJSON(arr){
-    this.arr = arr;
-    let t = JSON.stringify(this.arr);
-    console.log(t);
-    localStorage.EVENTS = t;
-    console.log("updated");
-  };
-
-  let jsonArray = updateArray();
-  console.log(jsonArray);
-  updateJSON(jsonArray);
-
+  
 
     document.getElementById("month").onchange = function(){
 	let month = document.getElementById("month");
@@ -213,16 +190,13 @@ function updateJSON(arr){
     document.getElementById("btnAddEvent").addEventListener("click", function() {
         newEvent = createEvent(creator, eventName.value, time, day, month, year);
 
-        let jsonArray = updateArray();
-        console.log(jsonArray);
-        updateJSON(jsonArray);
+ 
 
         jsonArray.push(newEvent);
         updateTimesTable();
         displayEventData();
         time = [];
 
-        localStorage.EVENTS = updateJSON(jsonArray);
 
         //TODO - Either add newEvent to JSON File, maybe put a function for
         //       doing so, in the event.js file, or completely write over file
