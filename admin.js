@@ -1,61 +1,6 @@
-//enter name
-//chose mode
-//load correct html
-
-//TODO - The monthly calendar needs to be updated to include buttons and/or
-//       dropdown lists to select month and year.
-//TODO - The monthly calendar needs to be updated so that days are valid for
-//       each particular month, and so days properly align with the days of the
-//       week.
-
-
-//TEST ARRAY OF OBJECTS
-/*let jsonArray = [
-{
-    "creator": "Michael",
-    "eventName": "Superbowl",
-    "time":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"],
-    ],
-    "day": 20,
-    "month": 2,
-    "year": 2020
-},
-{
-    "creator": "Brian",
-    "eventName": "Meeting",
-    "time":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Brian"], ["Brian", "Michael"], ["Brian", "Michael"], ["Brian", "Michael"], ["Brian"], ["Brian"]
-    ],
-    "day": 20,
-    "month": 2,
-    "year": 2020
-},
-{
-    "creator": "Michael",
-    "eventName": "Party",
-    "time":
-    [
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"],
-        undefined, undefined, undefined, undefined, undefined, undefined,
-        ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"], ["Michael"]
-    ],
-    "day": 20,
-    "month": 2,
-    "year": 2020
-}
-]*/
+/**
+ * @file admin.js
+ */
 
 /**
  * When the dom is loaded into admin.js, our program runs
