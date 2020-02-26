@@ -8,6 +8,23 @@
 //       each particular month, and so days properly align with the days of the
 //       week.
 
+function updateArray(){
+    let storage = (localStorage.EVENTS);
+    //it wont parse if this is empty
+    // program halts
+    if(storage.length != 0)
+    {
+    let w = JSON.parse(storage);
+    return w;
+    }
+    return "empty";
+};
+function updateJSON(arr){
+    this.arr = arr;
+    let t = JSON.stringify(this.arr);
+    localStorage.EVENTS = t;
+    console.log("updated");
+  };
 
 //TEST ARRAY OF OBJECTS
 let jsonArray = [
