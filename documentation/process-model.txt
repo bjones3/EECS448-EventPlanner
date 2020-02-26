@@ -1,2 +1,0 @@
-Process Model (5%)
-What software process model would be appropriate for this project? State your arguments and briefly describe to what extent you have followed this process model. Write your explanation in a text file called process-model.txt and include it in the documentation folder.
