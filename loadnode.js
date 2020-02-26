@@ -1,4 +1,10 @@
 /*
+NOT IMPLEMENTED STOP READING
+
+
+
+
+
   This works as if we launch node->choose mode -> open correct html -> load other js files 
   Type node loadnode.js to launch but you need node installed with all the 'requires' 
   Node asks what's your name and what mode you want
