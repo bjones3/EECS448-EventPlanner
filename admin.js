@@ -313,19 +313,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         timeElement.innerHTML = eventObject.eventName;
                         timeElement.innerHTML += "\n";
                         timeElement.innerHTML += eventObject.time[i];
-                        let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
-                        timeElement24.style.backgroundColor = "lightblue";
-                        timeElement24.innerHTML = eventObject.eventName;
                     }
                 }
                 for  (i in eventObject.time24)
                 {
                     if (eventObject.time24[i])
                     {
-                        let timeElement = tableTimes.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
-                        timeElement.style.backgroundColor = "lightblue";
-                        timeElement.innerHTML = eventObject.eventName;
-
                         let timeElement24 = tableTimes24.rows[i % 3 + 1].cells[Math.floor(i / 3) + 1];
                         timeElement24.style.backgroundColor = "lightblue";
                         timeElement24.innerHTML = eventObject.eventName;
