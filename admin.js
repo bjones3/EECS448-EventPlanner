@@ -1,3 +1,12 @@
+/**	
+ * @file admin.js	
+ * @contributers Adam, Michael, Garette, Jinwoo, Useff	
+ */	
+
+/**	
+ * When the dom is loaded into admin.js, our program runs	
+ * @constructor window event listner	
+ */
 window.addEventListener('DOMContentLoaded', (event) => {
     let time = [];
     let time24 = [];
@@ -17,6 +26,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         child.value = cho;
         yearSelection.appendChild(child);
     }
+ /**
+ * @param {string} local storage retrives "user" from localStorage
+ */
     let creator = window.localStorage.getItem('user');
     let eventName = document.querySelector("#eventName");
     document.querySelector("#creator").innerHTML += creator;
@@ -24,7 +36,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let jsonArray = [];
     if (window.localStorage.event)
         jsonArray = JSON.parse(window.localStorage.getItem('event'));
-
+ /**	
+ * @constructor document.getElementById("month") will be verified onchange	
+ */
     document.getElementById("month").onchange = function() {
         let month = document.getElementById("month");
         document.getElementById("pickedMonth").value = month.options[month.selectedIndex].text;
@@ -149,7 +163,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             clearTimesTable();
         }
     }
-
+ /**	
+ * @constructor document.getElementById("year") will be verified onchange	
+ */ 
     document.getElementById("year").onchange = function() {
         let year = document.getElementById("year");
 
@@ -204,7 +220,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
 	}
 
-    //EVENT LISTENERS
+ /**	
+ * Event listeners	
+ */
     window.onclick = e => {
         let element = e.target;
         if (element.className == "day")
@@ -251,7 +269,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
     };
-        document.getElementById("btnAddAvailibility").addEventListener("click", function() {
+    document.getElementById("btnAddAvailibility").addEventListener("click", function() {
 
         for (let i in jsonArray)
         {
@@ -270,7 +288,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         displayAvailibilityData();
         time = [];
     })
-
+/**
+ * Represents a book.
+ * @constructor displayEventData
+ * @result - admin.html inner html will display the current event.	
+ */
     document.getElementById("btnAddEvent").addEventListener("click", function() {
         newEvent = createEvent(creator, eventName.value, time, time24, day, currentMonth, currentYear);
 
@@ -283,7 +305,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         time = [];
 	time24 = [];
     });
-    //Toggles between 12 hour and 24 hour mode
+ /**
+ * Toggles between 12 hour and 24 hour mode
+ */
     document.getElementById("toggleTime").addEventListener("click", function(button){
 	if(document.getElementById("tblTimes").style.display === "none")
 	{
@@ -301,7 +325,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	}
     });
 
-
+ /**
+ * Time to string helper function
+ */
     function timeToStringArray(times) {
         let strArray = [];
 
@@ -325,7 +351,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         return (strArray);
     }
-
+ /**
+  * @ result The time table is "cleared" if a button (24 hour mode or 12 hour mode) is selected
+  */
     function clearTimesTable() {
         for (let time of document.getElementsByClassName("time"))
         {
@@ -338,7 +366,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             time24.style.backgroundColor = "";
         }
     }
-
+ /**
+ * Updating time table
+ * @result - admin.html inner html will display the correct time table
+ */
     function updateTimesTable() {
         let tableTimes = document.querySelector("#tblTimes");
         let tableTimes24 = document.querySelector("#tblTimes24");
@@ -373,13 +404,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
     }
-
+ /**	
+ * Represents event data 	
+ * @result - admin.html inner html will display the added event.	
+ */
     function displayEventData() {
         document.getElementById("display").innerHTML = "User " + creator +
         " has created the event " + eventName.value + " on " + currentMonth + "/" +
         day + "/" + currentYear + " at times " + timeToStringArray(time);
     };
-
+ /**	
+ * Represents availability data 	
+ * @result - admin.html inner html will display the added availability.	
+ */
     function displayAvailibilityData() {
 	document.getElementById("display").innerHTML = "User " + creator +
         " has added their name to the event " + eventName.value + " on " + currentMonth + "/" +
